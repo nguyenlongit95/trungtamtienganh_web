@@ -78,6 +78,8 @@
 <script src="{{ asset('/plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
 
+<script src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
+
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->

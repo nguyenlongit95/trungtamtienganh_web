@@ -2,6 +2,16 @@
 
 namespace App\Providers;
 
+use App\Repositories\Article\ArticleEloquentRepository;
+use App\Repositories\Article\ArticleRepositoryInterface;
+use App\Repositories\Blog\BlogEloquentRepository;
+use App\Repositories\Blog\BlogRepositoryInterface;
+use App\Repositories\Category\CategoryEloquentRepository;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Contact\ContactEloquentRepository;
+use App\Repositories\Contact\ContactRepositoryInterface;
+use App\Repositories\Tags\TagsEloquentRepository;
+use App\Repositories\Tags\TagsRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +38,26 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Repositories\Menus\MenusRepositoryInterface::class,
             \App\Repositories\Menus\MenusEloquentRepository::class
+        );
+        $this->app->bind(
+            CategoryRepositoryInterface::class,
+            CategoryEloquentRepository::class
+        );
+        $this->app->bind(
+            ArticleRepositoryInterface::class,
+            ArticleEloquentRepository::class
+        );
+        $this->app->bind(
+            BlogRepositoryInterface::class,
+            BlogEloquentRepository::class
+        );
+        $this->app->bind(
+            TagsRepositoryInterface::class,
+            TagsEloquentRepository::class
+        );
+        $this->app->bind(
+            ContactRepositoryInterface::class,
+            ContactEloquentRepository::class
         );
     }
 

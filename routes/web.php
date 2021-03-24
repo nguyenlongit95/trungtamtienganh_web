@@ -1,12 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashBoardController;
-use App\Http\Controllers\Admin\WidgetController;
-use App\Http\Controllers\Admin\PaygateController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\MenuController;
+
 /**
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +19,9 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '/admin'], function () {
-    Route::get('/login', [LoginController::class, 'login']);
-    Route::post('/login', [LoginController::class, 'postLogin']);
-    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+    Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'postLogin']);
+    Route::get('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 });
 
 Route::get('login', [\App\Http\Controllers\FrontEnd\LoginController::class, 'login']);
@@ -48,33 +44,53 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
     Route::get('/', [DashBoardController::class, 'index']);
 
     Route::group(['prefix' => 'widgets'], function () {
-        Route::get('/index', [WidgetController::class, 'index']);
-        Route::post('{id}/update', [WidgetController::class, 'update']);
-        Route::get('{id}/delete', [WidgetController::class, 'delete']);
-        Route::post('create',[WidgetController::class, 'create']);
+        Route::get('/index', [\App\Http\Controllers\Admin\WidgetController::class, 'index']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\WidgetController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\WidgetController::class, 'delete']);
+        Route::post('create',[\App\Http\Controllers\Admin\WidgetController::class, 'create']);
     });
 
     Route::group(['prefix' => 'paygates'], function () {
-        Route::get('index', [PaygateController::class, 'index']);
-        Route::get('{id}/edit', [PaygateController::class, 'edit']);
-        Route::post('{id}/update', [PaygateController::class, 'update']);
+        Route::get('index', [\App\Http\Controllers\Admin\PaygateController::class, 'index']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\PaygateController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\PaygateController::class, 'update']);
     });
 
     Route::group(['prefix' => 'users'], function () {
-        Route::get('index', [UserController::class, 'index']);
-        Route::get('{id}/edit', [UserController::class, 'edit']);
-        Route::post('{id}/update', [UserController::class, 'update']);
-        Route::get('{id}/delete', [UserController::class, 'delete']);
+        Route::get('index', [\App\Http\Controllers\Admin\UserController::class, 'index']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\UserController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\UserController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'menus'], function () {
-        Route::get('index', [MenuController::class, 'index']);
-        Route::get('{id}/edit', [MenuController::class, 'edit']);
-        Route::post('{id}/update', [MenuController::class, 'update']);
-        Route::post('create', [MenuController::class, 'store']);
-        Route::get('show/{id}', [MenuController::class, 'show']);
-        Route::get('create', [MenuController::class, 'create']);
-        Route::get('{id}/delete', [MenuController::class, 'destroy']);
-        Route::get('add', [MenuController::class, 'add']);
+        Route::get('index', [\App\Http\Controllers\Admin\MenuController::class, 'index']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\MenuController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\MenuController::class, 'update']);
+        Route::post('create', [\App\Http\Controllers\Admin\MenuController::class, 'store']);
+        Route::get('show/{id}', [\App\Http\Controllers\Admin\MenuController::class, 'show']);
+        Route::get('create', [\App\Http\Controllers\Admin\MenuController::class, 'create']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\MenuController::class, 'destroy']);
+        Route::get('add', [\App\Http\Controllers\Admin\MenuController::class, 'add']);
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
+        Route::post('/add', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\CategoryController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+        Route::post('search', [\App\Http\Controllers\Admin\CategoryController::class, 'search']);
+    });
+
+    Route::group(['prefix' => 'article'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ArticleController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\ArticleController::class, 'create']);
+        Route::post('add', [\App\Http\Controllers\Admin\ArticleController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\ArticleController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\ArticleController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\ArticleController::class, 'destroy']);
+        Route::post('search', [\App\Http\Controllers\Admin\ArticleController::class, 'search']);
     });
 });

@@ -12,8 +12,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
+            <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
             <li class="nav-item">
                 <a href="{{ url('/admin') }}" class="nav-link">
                     <i class="fas fa-chart-line"></i>
@@ -32,28 +31,28 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ url('/admin/category') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Danh mục bài báo</p>
+                            <p>Danh mục bài viết</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ url('/admin/article') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Danh sách bài báo</p>
+                            <p>Danh sách bài viết</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ url('/admin/blog') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Danh sách blog cá nhân</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ url('/admin/contact') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Liên hệ của người dùng</p>
                         </a>

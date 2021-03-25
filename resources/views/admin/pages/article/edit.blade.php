@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="col-3 float-left">
-                        <div class="card card-secondary">
+                        <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">Thông tin thêm</h3>
                                 <div class="card-tools">
@@ -108,11 +108,29 @@
                             <div class="card-footer">
                                 <p>- Những trường thông tin có dấu <span class="text-danger">*</span> là bắt buộc phải nhập.</p>
                                 <p>- Sau khi nhập xong thông tin trên các trường dữ liệu phía trên quản lý hãy click vào nút <span class="text-danger">(Chỉnh sửa)</span> để thêm mới bài báo.</p>
+                                <p>- AI của google sẽ chủ yếu tìm đến thẻ <span class="text-danger font-weight-bold">h1</span> để kiểm tra từ khoá và đánh giá cơ bản từ khoá xong rồi mới đến nội dung bài viết.</p>
                                 <input type="submit" name="create" class="btn btn-primary float-right" value="Chỉnh sửa">
                             </div>
                         </div>
                     </div>
                 </form>
+
+                <!-- Preview description -->
+                <div class="col-12 float-left">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">Xem thử nội dung bài báo</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {!! $article->description !!}
+                        </div>
+                    </div>
+                </div>
+                <!-- End preview -->
             </div>
         </section>
         <!-- /.content -->
@@ -136,7 +154,15 @@
         // Replace ck editor
         $(document).ready(function () {
             CKEDITOR.replace('info');
-            CKEDITOR.replace('description');
+            CKEDITOR.replace('description',
+                {
+                    filebrowserBrowseUrl : '{{ asset('/plugins/') }}' + '/ckfinder/ckfinder.html',
+                    filebrowserImageBrowseUrl : '{{ asset('/plugins/') }}' + '/ckfinder/ckfinder.html?type=Images',
+                    filebrowserFlashBrowseUrl : '{{ asset('/plugins/') }}' + '/ckfinder/ckfinder.html?type=Flash',
+                    filebrowserUploadUrl : '{{ asset('/plugins/') }}' + '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                    filebrowserImageUploadUrl : '{{ asset('/plugins/') }}' + '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                    filebrowserFlashUploadUrl : '{{ asset('/plugins/') }}' + '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+                });
         });
     </script>
 @endsection

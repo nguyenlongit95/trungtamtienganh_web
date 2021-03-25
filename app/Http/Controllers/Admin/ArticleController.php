@@ -136,7 +136,7 @@ class ArticleController extends Controller
         // add tags
         $assignTags = $this->articleRepository->assignTags($param['tags'], $checkArticle);
         if ($assignTags) {
-            return redirect('/admin/article')->with('status', config('langVN.update.success'));
+            return redirect('/admin/article/' . $id . '/edit')->with('status', config('langVN.update.success'));
         }
 
         return redirect()->back()->with('status', config('const.update.failed'));

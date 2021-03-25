@@ -32,6 +32,32 @@ return [
                 'required' => 'Bạn hãy chọn trạng thái xuất bản cho bài viết.',
             ],
         ],
+        'blog' => [
+            'name' => [
+                'required' => 'Bạn hãy nhập tên bài viết.',
+            ],
+            'title' => [
+                'required' => 'Bạn hãy nhập thẻ tiêu đề cho bài viết.',
+            ],
+            'info' => [
+                'required' => 'Bạn hãy nhập nội dung cơ bản cho bài viết.',
+            ],
+            'description' => [
+                'required' => 'Bạn hãy nhập nội dung chi tiết cho bài viết.',
+            ],
+            'author' => [
+                'required' => 'Bạn hãy nhập tên tác giả.',
+            ],
+            'status' => [
+                'required' => 'Bạn hãy chọn trạng thái xuất bản cho bài viết.',
+            ],
+        ],
+
+        'tags' => [
+            'name' => [
+                'required' => 'Bạn hãy nhập tên thẻ liên kết.'
+            ],
+        ]
     ],
 
     'create' => [

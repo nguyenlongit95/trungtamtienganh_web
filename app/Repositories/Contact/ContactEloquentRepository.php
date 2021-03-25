@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Contact;
 
+use App\Models\Contact;
 use App\Repositories\Eloquent\EloquentRepository;
 
 class ContactEloquentRepository extends EloquentRepository implements ContactRepositoryInterface
@@ -12,6 +13,24 @@ class ContactEloquentRepository extends EloquentRepository implements ContactRep
      */
     public function getModel()
     {
-        // TODO: Implement getModel() method.
+        return Contact::class;
+    }
+
+    /**
+     * Function search contact
+     *
+     * @param array $param
+     * @return mixed
+     */
+    public function search($param)
+    {
+        return Contact::where(function ($query) use ($param) {
+            if (isset($param['name'])) {
+                $query->where('name', 'like', '%' . $param['name'] . '%');
+            }
+            if (isset($param['email'])) {
+                $query->where('email', 'like', '%' . $param['email'] . '%');
+            }
+        })->orderBy('id', 'DESC')->paginate(config('const.paginate'));
     }
 }

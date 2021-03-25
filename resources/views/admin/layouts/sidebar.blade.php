@@ -52,9 +52,9 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url('/admin/contact') }}" class="nav-link">
+                        <a href="{{ url('/admin/tags') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Liên hệ của người dùng</p>
+                            <p>Danh sách tags liên kết</p>
                         </a>
                     </li>
                 </ul>
@@ -67,6 +67,12 @@
 {{--                    </p>--}}
 {{--                </a>--}}
 {{--            </li>--}}
+            <li class="nav-item has-treeview">
+                <a href="{{ url('admin/contact/') }}" class="nav-link">
+                    <i class="fas fa-phone-volume"></i>
+                    <p>Liên hệ của người dùng</p>
+                </a>
+            </li>
             <li class="nav-item has-treeview">
                 <a href="{{ url('admin/menus/index') }}" class="nav-link">
                     <i class="fas fa-bars"></i>

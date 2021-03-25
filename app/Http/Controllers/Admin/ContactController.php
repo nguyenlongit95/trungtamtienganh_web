@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Repositories\Contact\ContactRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    private $contactRepository;
+
+    public function __construct(ContactRepositoryInterface $contactRepository)
+    {
+        $this->contactRepository = $contactRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,72 +23,22 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = $this->contactRepository->getAll(config('const.paginate'), 'DESC');
+
+        return view('admin.pages.contact.index', compact('contacts'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Controller search contact using name or email
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function search(Request $request)
     {
-        //
-    }
+        $param = $request->all();
+        $contacts = $this->contactRepository->search($param);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
-    {
-        //
+        return view('admin.pages.contact.index', compact('contacts'));
     }
 }

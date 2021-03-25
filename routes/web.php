@@ -93,4 +93,26 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
         Route::get('{id}/delete', [\App\Http\Controllers\Admin\ArticleController::class, 'destroy']);
         Route::post('search', [\App\Http\Controllers\Admin\ArticleController::class, 'search']);
     });
+
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BlogController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\BlogController::class, 'create']);
+        Route::post('add', [\App\Http\Controllers\Admin\BlogController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\BlogController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\BlogController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\BlogController::class, 'destroy']);
+        Route::post('search', [\App\Http\Controllers\Admin\BlogController::class, 'search']);
+    });
+
+    Route::group(['prefix' => 'tags'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\TagsController::class, 'index']);
+        Route::post('/create', [\App\Http\Controllers\Admin\TagsController::class, 'store']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\TagsController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\TagsController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ContactController::class, 'index']);
+        Route::post('/search', [\App\Http\Controllers\Admin\ContactController::class, 'search']);
+    });
 });
